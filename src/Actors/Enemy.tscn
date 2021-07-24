@@ -1,0 +1,50 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/enemy/hurt/sprites/Enemy_Hurt3.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemy/hurt/sprites/Enemy_Hurt1.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemy/stalk/sprites/Enemy_Stalk2.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemy/blink/sprites/Enemy_Blink3.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemy/blink/sprites/Enemy_Blink2.png" type="Texture" id=5]
+[ext_resource path="res://assets/enemy/stalk/sprites/Enemy_Stalk3.png" type="Texture" id=6]
+[ext_resource path="res://assets/enemy/hurt/sprites/Enemy_Hurt2.png" type="Texture" id=7]
+[ext_resource path="res://assets/enemy/hurt/sprites/Enemy_Hurt4.png" type="Texture" id=8]
+[ext_resource path="res://assets/enemy/stalk/sprites/Enemy_Stalk4.png" type="Texture" id=9]
+[ext_resource path="res://assets/enemy/blink/sprites/Enemy_Blink1.png" type="Texture" id=10]
+[ext_resource path="res://assets/enemy/stalk/sprites/Enemy_Stalk1.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "blink",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "stalk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "hurt",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.27211, 14.0482 )
+
+[node name="Enemy" type="KinematicBody2D"]
+position = Vector2( 14.2305, -16.617 )
+collision_layer = 2
+collision_mask = 19
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.0883865, -0.0883884 )
+frames = SubResource( 1 )
+animation = "blink"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.795494, 2.03294 )
+shape = SubResource( 2 )

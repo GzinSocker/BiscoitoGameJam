@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -41,3 +42,6 @@ tile_data = PoolIntArray( -65500, 0, 0, 0, 0, 0, 36, 0, 0, 65536, 0, 0, 65571, 0
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 178.55, 482.899 )
 speed = Vector2( 500, 1000 )
+
+[node name="Enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 515.805, 475.454 )
