@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BiscoitoSprite_Atack4.png-fe45467a2220dbdb7da6cfc7f60c1cb7.stex"
+path="res://.import/BiscoitoSprite_Atack1.png-7f1ada893093bad41f49343efce62305.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_character/atack/sprites/BiscoitoSprite_Atack4.png"
-dest_files=[ "res://.import/BiscoitoSprite_Atack4.png-fe45467a2220dbdb7da6cfc7f60c1cb7.stex" ]
+source_file="res://assets/main_character/attack/sprites/BiscoitoSprite_Atack1.png"
+dest_files=[ "res://.import/BiscoitoSprite_Atack1.png-7f1ada893093bad41f49343efce62305.stex" ]
 
 [params]
 
