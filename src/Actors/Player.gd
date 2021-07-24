@@ -10,10 +10,14 @@ func move() -> void:
 	var direction: = calculate_direction()
 	_velocity = calculate_velocity(_velocity, direction)
 	
+	# animation
 	player_anim.flip_h = _last_nonzero_direction.x < 0
-	print(_velocity)
 	
-	if _velocity.x == 0:
+	if Input.is_action_just_pressed("jump"):
+		player_anim.play("jump")
+	elif !is_on_floor():
+		player_anim.play("fall")
+	elif _velocity.x == 0:
 		player_anim.play("hold")
 	else:
 		player_anim.play("run")
