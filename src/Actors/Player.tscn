@@ -1,13 +1,15 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run6.png" type="Texture" id=1]
 [ext_resource path="res://assets/main_character/hold/sprites/BiscoitoSprite_Hold1.png" type="Texture" id=2]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run4.png" type="Texture" id=3]
+[ext_resource path="res://assets/main_character/fall/sprites32/BiscoitoSprite_Fall3.png" type="Texture" id=4]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run1.png" type="Texture" id=5]
 [ext_resource path="res://assets/main_character/hold/sprites/BiscoitoSprite_Hold3.png" type="Texture" id=6]
 [ext_resource path="res://assets/main_character/walk/sprites/BiscoitoSprite_Walk6.png" type="Texture" id=7]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run5.png" type="Texture" id=8]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run7.png" type="Texture" id=9]
+[ext_resource path="res://assets/main_character/fall/sprites32/BiscoitoSprite_Fall1.png" type="Texture" id=10]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run10.png" type="Texture" id=11]
 [ext_resource path="res://assets/main_character/walk/sprites/BiscoitoSprite_Walk3.png" type="Texture" id=12]
 [ext_resource path="res://assets/main_character/jump/sprites/BiscoitoSprite_Jump3.png" type="Texture" id=13]
@@ -20,6 +22,7 @@
 [ext_resource path="res://assets/main_character/jump/sprites/BiscoitoSprite_Jump2.png" type="Texture" id=20]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run8.png" type="Texture" id=21]
 [ext_resource path="res://assets/main_character/walk/sprites/BiscoitoSprite_Walk1.png" type="Texture" id=22]
+[ext_resource path="res://assets/main_character/fall/sprites32/BiscoitoSprite_Fall2.png" type="Texture" id=23]
 [ext_resource path="res://assets/main_character/walk/sprites/BiscoitoSprite_Walk10.png" type="Texture" id=24]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run3.png" type="Texture" id=25]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run9.png" type="Texture" id=26]
@@ -31,14 +34,6 @@
 [sub_resource type="StreamTexture" id=7]
 flags = 4
 load_path = "res://.import/BiscoitoSprite_Fall3.png-225e4e17440da624783ca8b32f159ce6.stex"
-
-[sub_resource type="StreamTexture" id=8]
-flags = 4
-load_path = "res://.import/BiscoitoSprite_Fall1.png-892769f65c6dfe80bc71974bd6fba561.stex"
-
-[sub_resource type="StreamTexture" id=9]
-flags = 4
-load_path = "res://.import/BiscoitoSprite_Fall2.png-7b2993b43cbf9cfb079c665c285ccd67.stex"
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -68,7 +63,7 @@ animations = [ {
 "name": "on_air",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 7 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 23 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "fall",
 "speed": 8.0
@@ -95,20 +90,21 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 45.8233, 55.5459 )
+extents = Vector2( 8.58428, 12.3136 )
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 112.898, -93.0564 )
+position = Vector2( 22.4987, -18.7211 )
 collision_mask = 30
 script = ExtResource( 31 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
-animation = "on_air"
+animation = "fall"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -33.7777, 35.6686 )
+position = Vector2( -6.2599, 3.75536 )
 shape = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
