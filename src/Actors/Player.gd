@@ -16,7 +16,10 @@ func move() -> void:
 	if Input.is_action_just_pressed("jump"):
 		player_anim.play("jump")
 	elif !is_on_floor():
-		player_anim.play("fall")
+		if _velocity.y >= 0:
+			player_anim.play("fall")
+		else:
+			player_anim.play("on_air")
 	elif _velocity.x == 0:
 		player_anim.play("hold")
 	else:
