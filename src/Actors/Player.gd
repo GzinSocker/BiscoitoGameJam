@@ -1,5 +1,7 @@
 extends "res://src/Actors/Actor.gd"
 
+const speed: Vector2 = Vector2(250, 400)
+
 var _last_nonzero_direction: = Vector2(1, 0)
 var is_attacking: = false
 
@@ -7,10 +9,11 @@ onready var player_anim: = $AnimatedSprite
 onready var attack_area_collision: = $AttackArea/CollisionShape2D
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and is_on_floor():
 		attack()
 	elif !is_attacking:
 		move()
+	print(speed)
 	
 	
 func move() -> void:
@@ -67,8 +70,6 @@ func attack() -> void:
 		attack_area_collision.position.x = 14.7
 	
 	player_anim.play("attack")
-	
-
 
 func _on_AnimatedSprite_animation_finished():
 	if player_anim.animation == "attack":
