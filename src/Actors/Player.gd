@@ -1,10 +1,17 @@
 extends "res://src/Actors/Actor.gd"
 
 var _last_nonzero_direction: = Vector2(1, 0)
+var is_attacking: = false
+
 onready var player_anim: = $AnimatedSprite
+onready var attack_area_collision: = $AttackArea/CollisionShape2D
 
 func _physics_process(delta: float) -> void:
-	move()
+	if Input.is_action_just_pressed("attack"):
+		attack()
+	elif !is_attacking:
+		move()
+	
 	
 func move() -> void:
 	var direction: = calculate_direction()
@@ -47,3 +54,23 @@ func calculate_velocity(linear_velocity: Vector2, direction: Vector2) -> Vector2
 		new_vel.y = speed.y * direction.y
 		
 	return new_vel
+
+func attack() -> void:
+	is_attacking = true
+	attack_area_collision.disabled = false
+	
+	if _last_nonzero_direction.x < 0:
+		player_anim.flip_h = true
+		attack_area_collision.position.x = -14
+	else:
+		player_anim.flip_h = false
+		attack_area_collision.position.x = 14.7
+	
+	player_anim.play("attack")
+	
+
+
+func _on_AnimatedSprite_animation_finished():
+	if player_anim.animation == "attack":
+		is_attacking = false
+		attack_area_collision.disabled = true

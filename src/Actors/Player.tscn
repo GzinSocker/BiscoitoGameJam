@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run6.png" type="Texture" id=1]
 [ext_resource path="res://assets/main_character/hold/sprites/BiscoitoSprite_Hold1.png" type="Texture" id=2]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run4.png" type="Texture" id=3]
+[ext_resource path="res://assets/main_character/attack/BiscoitoSprite_Attack.png" type="Texture" id=4]
 [ext_resource path="res://assets/main_character/run/sprites/BiscoitoSprite_Run1.png" type="Texture" id=5]
 [ext_resource path="res://assets/main_character/hold/sprites/BiscoitoSprite_Hold3.png" type="Texture" id=6]
 [ext_resource path="res://assets/main_character/walk/sprites/BiscoitoSprite_Walk6.png" type="Texture" id=7]
@@ -31,21 +32,25 @@
 [ext_resource path="res://assets/main_character/fall/sprites/BiscoitoSprite_Fall3.png" type="Texture" id=33]
 [ext_resource path="res://assets/main_character/fall/sprites/BiscoitoSprite_Fall2.png" type="Texture" id=34]
 
-[sub_resource type="StreamTexture" id=1]
+[sub_resource type="AtlasTexture" id=7]
 flags = 4
-load_path = "res://.import/BiscoitoSprite_Atack1.png-3e99818a715de1c8b4568fa5167093a5.stex"
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 44, 32 )
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
-load_path = "res://.import/BiscoitoSprite_Atack2.png-fae5f6f0aeb376fa25607b375961820a.stex"
+atlas = ExtResource( 4 )
+region = Rect2( 44, 0, 44, 32 )
 
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
-load_path = "res://.import/BiscoitoSprite_Atack3.png-2c8a8793dda6812bb4cfd80d48c0c370.stex"
+atlas = ExtResource( 4 )
+region = Rect2( 88, 0, 44, 32 )
 
-[sub_resource type="StreamTexture" id=4]
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
-load_path = "res://.import/BiscoitoSprite_Atack4.png-fe45467a2220dbdb7da6cfc7f60c1cb7.stex"
+atlas = ExtResource( 4 )
+region = Rect2( 132, 0, 44, 32 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -74,14 +79,17 @@ animations = [ {
 "name": "jump",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "attack",
 "speed": 8.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 7.47532, 11.5175 )
+extents = Vector2( 8.64327, 13.1861 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 8.5703, 15.7641 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 17.223, -19.8433 )
@@ -90,15 +98,16 @@ script = ExtResource( 31 )
 speed = Vector2( 250, 400 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1.16798, 3.17024 )
 frames = SubResource( 5 )
-animation = "hold"
-playing = true
+animation = "attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.24096, 6.2653 )
+position = Vector2( -2.5758, 6.2653 )
 shape = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 current = true
 zoom = Vector2( 0.66, 0.66 )
 limit_left = 0
@@ -109,3 +118,13 @@ drag_margin_v_enabled = true
 smoothing_enabled = true
 drag_margin_left = 0.0
 drag_margin_right = 0.0
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+self_modulate = Color( 0.639216, 1, 0, 1 )
+position = Vector2( 14.7, 2.67 )
+shape = SubResource( 11 )
+disabled = true
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
